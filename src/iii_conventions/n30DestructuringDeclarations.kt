@@ -11,14 +11,22 @@ fun todoTask30(): Nothing = TODO(
     documentation = doc30()
 )
 
-class MyDate(val year: Int, val month: Int, val dayOfMonth: Int)
+//声明为数据类，会自动加上componentN这样的解构函数
+data class MyDate(val year: Int, val month: Int, val dayOfMonth: Int){
+
+
+//    operator fun component1() = year
+//    operator fun component2() = month
+//    operator fun component3() = dayOfMonth
+//如果不是数据类，需要为其提供解构声明的话，则要像上面一样手动写上componentN()函数
+
+}
 
 fun isLeapDay(date: MyDate): Boolean {
-    todoTask30()
-//    val (year, month, dayOfMonth) = date
+    val (year, month, dayOfMonth) = date
 //
 //    // 29 February of a leap year
-//    return isLeapYear(year) && month == 1 && dayOfMonth == 29
+    return isLeapYear(year) && month == 1 && dayOfMonth == 29
 }
 
 // Years which are multiples of four (with the exception of years divisible by 100 but not by 400)

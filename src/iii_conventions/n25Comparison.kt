@@ -16,7 +16,14 @@ fun todoTask25(): Nothing = TODO(
 )
 
 fun task25(date1: MyDate, date2: MyDate): Boolean {
-    todoTask25()
-//    return date1 < date2
+    return date1<date2
+
+    //测试运算符重载:重载了加号运算符
+//    return when (date1 + date2) {
+//        -1 -> true
+//        else->{
+//            false
+//        }
+//    }
 }
 

@@ -12,10 +12,16 @@ fun whatFoldDoes(): Int {
     return result
 }
 
+//返回那些被每一个客户都订购过的商品
 fun Shop.getSetOfProductsOrderedByEachCustomer(): Set<Product> {
-    // Return the set of products that were ordered by each of the customers
+    //得到所有被下单过的商品
+    val allProducts = customers.flatMap {
+        it.orders.flatMap { it.products }
+    }.toSet()
+
     return customers.fold(allOrderedProducts, {
         orderedByAll, customer ->
-        todoCollectionTask()
+        orderedByAll.intersect(
+                customer.orders.flatMap { it.products }.toSet())
     })
 }
