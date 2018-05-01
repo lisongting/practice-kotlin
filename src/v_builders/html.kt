@@ -40,6 +40,7 @@ class Text(val text: String): Tag("b") {
     override fun toString() = text
 }
 
+//这个意思是：传入一个名叫init的lambda表达式，该表达式是Html的扩展，输入参数为空，返回Unit
 fun html(init: Html.() -> Unit): Html = Html().apply(init)
 
 fun Html.table(init : Table.() -> Unit) = doInit(Table(), init)

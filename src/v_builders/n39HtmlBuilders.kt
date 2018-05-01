@@ -2,6 +2,7 @@ package v_builders
 
 import util.TODO
 import util.doc39
+import v_builders.data.Product
 import v_builders.data.getProducts
 import v_builders.htmlLibrary.*
 
@@ -19,22 +20,40 @@ fun todoTask39(): Nothing = TODO(
     documentation = doc39()
 )
 
+//这个tr是html中的列表行，其中的td是列表的行元素
 fun renderProductTable(): String {
     return html {
         table {
-            tr {
-                td {
+            tr(getTitleColor()) {
+                //这里一共有三行
+                td{
                     text("Product")
                 }
-                td {
+                td{
                     text("Price")
                 }
-                td {
+                td{
                     text("Popularity")
                 }
             }
             val products = getProducts()
-            todoTask39()
+            products.mapIndexed {
+                index: Int, product: Product ->
+                //对这个products每个元素做变换，
+                // 将每个product填充到html表格中
+                tr{
+                    td(color = getCellColor(index,0)){
+                        text(product.description)
+                    }
+                    td(color = getCellColor(index,1)){
+                        text(product.price)
+                    }
+                    td(color = getCellColor(index,2)){
+                        text(product.popularity)
+                    }
+                }
+            }
+
         }
     }.toString()
 }
